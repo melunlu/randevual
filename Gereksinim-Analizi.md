@@ -1,36 +1,113 @@
 # Gereksinim Analizi
 
-Tüm gereksinimlerinizi çıkardıktan sonra beraber tartışıyoruz ve son gereksinimlerin isimlerini hangi API metoduna karşılık geleceğini ve kısa açıklamalarını buraya numaralı bir şekilde yazıyorsunuz. Daha sonra aşağıya herkes kendi gereksinimiyle ilgili sayfayı oluşturmalı ve kendi sayfasında kendine ait gereksinimleri numaralı bir şekilde listeleyerek her bir gereksinimin açıklamalarını yazmalı. Toplamda grup üyesi sayısı kadar sayfa oluşturulmalı. Her grup üyesine eşit sayıda gereksinim atanmalı.
-
-## Gereksinim Sayıları (En Az)
-
-- **1 Kişi:** 10 gereksinim
-- **2 Kişi:** 16 gereksinim
-- **3 Kişi:** 21 gereksinim
-- **4 Kişi:** 24 gereksinim
-- **5 Kişi:** 30 gereksinim
-
-## Gereksinimlerde Uyulması Gereken Kurallar
-
-1. **İsimler anlamlı olmalı:** Gereksinim isimleri net ve anlaşılır olmalıdır.
-2. **Açıklamalar net olmalı:** Her gereksinimin açıklaması açık ve anlaşılır şekilde yazılmalıdır.
-3. **Açıklamalar teknik jargon ve kısaltmalar içermemeli:** Gereksinim açıklamaları herkesin anlayabileceği basit bir dille yazılmalıdır.
-4. **Gereksinim isimleri çok uzun olmamalı ve bir eylem bildirmeli:** 
-   - İsimler kısa ve öz olmalıdır
-   - Bir eylem fiili içermelidir
-   - Örnekler: "Kayıt Olma", "Giriş Yapma", "Profil Güncelleme", "Hesap Silme"
+Aşağıda uygulamaya ait gereksinim analizi yapılıp listelenmiştir.Ekip üyeleri arasında paylaşım yapılmıştır.										
 
 # Tüm Gereksinimler 
 
-1. **Giriş Yapma** (Ali Tutar)
-2. **Üye Olma** (Ali Tutar)
-3. ..
-4. ..
+## 👤 Müşteri İşlemleri
+
+1. **Müşteri Üye Olma**  (Melike Ünlü)
+   - **API Metodu:** `POST /customers/register`  
+   - **Açıklama:** Yeni müşterilerin sisteme kayıt olmasını sağlar. Kullanıcı adı, email ve şifre bilgileri alınarak hesap oluşturulur.
+
+2. **Müşteri Giriş**  (Melike Ünlü)
+   - **API Metodu:** `POST /customers/login`  
+   - **Açıklama:** Müşterinin email ve şifre ile sisteme giriş yapmasını sağlar. Başarılı girişte kimlik doğrulama için token döndürülür
+
+3. **Profil Güncelleme**  (Melike Ünlü)
+   - **API Metodu:** `PUT /customers/{customerId}`  
+   - **Açıklama:** Müşterinin profil bilgilerini güncellemesini sağlar.  
+   - **Not:** Kendi profilini güncellemek için `/customers/me` kullanılabilir.
+
+---
+
+## 📅 Randevu İşlemleri
+
+4. **Randevu Oluşturma**  (Melike Ünlü)
+   - **API Metodu:** `POST /appointments`  
+   - **Açıklama:** Müşterinin seçtiği işletme ve hizmet için randevu oluşturur.
+
+5. **Randevu Listeleme (Müşteri)**  (Melike Ünlü)
+   - **API Metodu:** `GET /appointments?customerId={customerId}`  
+   - **Açıklama:** Belirli bir müşteriye ait tüm randevuları listeler.  
+   - **Not:** Kendi randevularını listelemek için `/appointments/me` kullanılabilir.
+
+6. **Randevu Güncelleme**  (Beyza Nur Kaya)
+   - **API Metodu:** `PUT /appointments/{appointmentId}`  
+   - **Açıklama:** Var olan randevunun tarih veya saat bilgilerini günceller.
+
+7. **Randevu Silme**  (Melike Ünlü)
+   - **API Metodu:** `DELETE /appointments/{appointmentId}`  
+   - **Açıklama:** Randevuyu iptal eder.
+
+---
+
+## 💬 Comment İşlemleri
+
+8. **Comment Ekleme**  (Beyza Nur Kaya)
+    - **API Metodu:** `POST /comments`  
+    - **Açıklama:** Müşteri, aldığı hizmet için yorum yapabilir.
+
+9. **Comment Güncelleme**  (Beyza Nur Kaya)
+    - **API Metodu:** `PUT /comments/{commentId}`  
+    - **Açıklama:** Müşterinin yaptığı yorumu günceller.
+
+10. **Comment Silme**  (Beyza Nur Kaya)
+    - **API Metodu:** `DELETE /comments/{commentId}`  
+    - **Açıklama:** Yorumu siler.
+
+---
+
+## 🏢 İşletme İşlemleri
+
+11. **İşletme Üye Olma** (Beyza Nur Kaya)  
+    - **API Metodu:** `POST /businesses/register`  
+    - **Açıklama:** Yeni işletme hesabı oluşturur.
+
+12. **İşletme Giriş**  (Beyza Nur Kaya)
+    - **API Metodu:** `POST /businesses/login`  
+    - **Açıklama:** İşletmenin sisteme giriş yapmasını sağlar.
+
+13. **İşletme Oluşturma**  (Beyza Nur Kaya)
+    - **API Metodu:** `POST /businesses`  
+    - **Açıklama:** Sisteme yeni bir işletme ekler.
+
+---
+
+## 🏢 İşletme Randevu İşlemleri
+
+14. **İşletmeye Ait Randevuları Listeleme**  (Beyza Nur Kaya)
+    - **API Metodu:** `GET /appointments?businessId={businessId}`  
+    - **Açıklama:** Belirli bir işletmeye ait tüm randevuları listeler.  
+    - **Not:** Kendi işletmene ait randevuları listelemek için `/appointments/me` veya `/businesses/me/appointments` kullanılabilir.
+
+---
+
+## 🛎️ Hizmet İşlemleri
+
+15. **Hizmet Ekleme**  (Melike Ünlü)
+    - **API Metodu:** `POST /services`  
+    - **Açıklama:** İşletmeye yeni hizmet ekler.
+
+16. **Hizmet Listeleme**  (Melike Ünlü)
+    - **API Metodu:** `GET /services?businessId={businessId}`  
+    - **Açıklama:** Belirli bir işletmeye ait hizmetleri listeler.  
+    - **Not:** Kendi işletmene ait hizmetleri listelemek için `/services/me` kullanılabilir.
+
+17. **Hizmet Güncelleme**  (Melike Ünlü)
+    - **API Metodu:** `PUT /services/{serviceId}`  
+    - **Açıklama:** Hizmet bilgilerini günceller.
+
+---
+
+## 🗂️ Kategori İşlemleri
+
+18. **Kategori Listeleme (ID Bazlı)**  (Beyza Nur Kaya)
+    - **API Metodu:** `GET /categories/{categoryId}`  
+    - **Açıklama:** Belirli bir kategorideki işletmeleri getirir.  
+
+
 # Gereksinim Dağılımları
 
-1. [Ali Tutar'ın Gereksinimleri](Ali-Tutar/Ali-Tutar-Gereksinimler.md)
-2. [Grup Üyesi 2'nin Gereksinimleri](Grup-Uyesi-2/Grup-Uyesi-2-Gereksinimler.md)
-3. [Grup Üyesi 3'ün Gereksinimleri](Grup-Uyesi-3/Grup-Uyesi-3-Gereksinimler.md)
-4. [Grup Üyesi 4'ün Gereksinimleri](Grup-Uyesi-4/Grup-Uyesi-4-Gereksinimler.md)
-5. [Grup Üyesi 5'in Gereksinimleri](Grup-Uyesi-5/Grup-Uyesi-5-Gereksinimler.md)
-6. [Grup Üyesi 6'nın Gereksinimleri](Grup-Uyesi-6/Grup-Uyesi-6-Gereksinimler.md)
+1. [Beyza Nur Kaya'nın Gereksinimleri](Beyza-Nur-Kaya/Beyza-Nur-Kaya-Gereksinimler.md)
+2. [Melike Ünlü'nün Gereksinimleri](Melike-Ünlü/Melike-Ünlü-Gereksinimler.md)
