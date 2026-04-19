@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-const API_URL = "https://randevual-theta.vercel.app/";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 const inputStyle = {
   display: "block", width: "100%", marginBottom: "12px",

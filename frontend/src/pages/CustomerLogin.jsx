@@ -23,7 +23,7 @@ export default function CustomerLogin() {
   const navigate = useNavigate();
 
   // Senin Vercel backend linkin
-  const API_URL = import.meta.env.VITE_API_URL || "https://randevual-psol.vercel.app";
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
   const handleSubmit = async (e) => {
     e.preventDefault();

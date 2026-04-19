@@ -19,7 +19,7 @@ export default function BusinessServices() {
   const [editingId, setEditingId] = useState(null); // Hangi hizmetin düzenlendiğini tutar
   const [message, setMessage] = useState("");
 
-  const API_URL = import.meta.env.VITE_API_URL || "https://randevual-psol.vercel.app";
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
   const businessId = localStorage.getItem("businessId") || "69d29fa9fa7dafca23d868c8";
 
   const fetchServices = async () => {

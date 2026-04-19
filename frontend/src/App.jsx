@@ -10,7 +10,7 @@ import CustomerAppointments from "./pages/CustomerAppointments";
 import CustomerCreateAppointment from "./pages/CustomerCreateAppointment";
 import CustomerProfile from "./pages/CustomerProfile";
 import BusinessServices from "./pages/BusinessServices";
-const API_URL = import.meta.env.VITE_API_URL || "https://randevual-psol.vercel.app";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 function Navbar() {
   const location = useLocation();

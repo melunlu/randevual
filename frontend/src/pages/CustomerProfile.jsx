@@ -18,7 +18,7 @@ export default function CustomerProfile() {
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
 
-  const API_URL = import.meta.env.VITE_API_URL || "https://randevual-theta.vercel.app";
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
   const handleUpdate = async (e) => {
     e.preventDefault();

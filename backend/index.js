@@ -52,4 +52,12 @@ app.use("/appointments", appointmentRoutes);
 app.use("/comments", commentRoutes);
 app.use("/categories", categoryRoutes);
 
+// Vercel ortamında değilsek sunucuyu dinlemeye başla
+if (require.main === module || process.env.NODE_ENV === 'development') {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`Sunucu ${PORT} portunda çalışıyor`);
+  });
+}
+
 module.exports = app;
